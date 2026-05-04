@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Super Admin
-        $superAdmin = User::firstOrCreate(
+        $superAdmin = User::updateOrCreate(
             ['email' => 'superadmin@everycity.org'],
             [
                 'name' => 'Super Admin',
@@ -24,13 +24,20 @@ class UserSeeder extends Seeder
         );
         $superAdmin->assignRole('super_admin');
         // Admin
-        $admin = User::firstOrCreate(
+        $admin = User::updateOrCreate(
             ['email' => 'admin@everycity.org'],
             [
                 'name' => 'EveryCity Admin',
                 'password' => Hash::make('9EvERY$cITY#(31'),
             ]
         );
+        // $admin = User::firstOrCreate(
+        //     ['email' => 'admin@everycity.org'],
+        //     [
+        //         'name' => 'EveryCity Admin',
+        //         'password' => Hash::make('9EvERY$cITY#(31'),
+        //     ]
+        // );
         $admin->assignRole('admin');
     }
 }
